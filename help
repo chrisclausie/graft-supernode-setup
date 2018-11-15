@@ -1,0 +1,49 @@
+sudo apt-get install -y git
+
+git clone --recursive https://github.com/graft-project/graft-ng.git
+
+cd graft-ng
+
+git checkout alpha3
+
+git submodule update --init --recursive
+
+
+root/graft-ng/modules/cryptonode/install_dependencies.sh
+
+
+Download this file: 
+https://cmake.org/files/v3.11/cmake-3.11.1-Linux-x86_64.sh
+Copy via SFTP to: root/scripts
+cd scripts
+export set PATH=$PATH:/scripts
+chmod +x cmake-3.11.1-Linux-x86_64.sh
+cmake-3.11.1-Linux-x86_64.sh
+
+
+sudo apt-get -y install build-essential cmake pkg-config libboost-all-dev 
+sudo apt-get -y install build-essential cmake libssl-dev autoconf automake 
+sudo apt-get -y install build-essential cmake check libpcre3-dev rapidjson-dev 
+sudo apt-get -y install build-essential cmake libreadline-dev
+
+mkdir -p root/supernode cd root/supernode
+
+cmake -DENABLE_SYSLOG=ON $HOME/graft-ng
+
+
+sudo sh -c 'dd if=/dev/zero of=/mnt/swap bs=1M count=1024 && chmod 600 /mnt/swap && mkswap /mnt/swap && echo "/mnt/swap swap swap defaults 0 0" >>/etc/fstab && swapon -a'
+
+make -j1
+
+
+copy root/graft_ng/data/config.ini to root/supernode/
+
+chmod +x graft_server
+
+./graft_server
+
+cd ~/.graft/supernode/data/stake-wallet
+
+less stake-wallet.address.txt
+
+#!/bin/bash./graft_server --log-file ./root/supernode/LOGS
