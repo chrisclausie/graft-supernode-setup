@@ -9,7 +9,7 @@ git checkout alpha3
 git submodule update --init --recursive
 
 
-root/graft-ng/modules/cryptonode/install_dependencies.sh
+/root/graft-ng/modules/cryptonode/install_dependencies.sh
 
 
 Download this file: 
